@@ -96,8 +96,7 @@ contract Sessions is ERC721Holder {
             ",",
             _meetingLink,
             ",",
-            SQLHelpers.quote(Strings.toString(uint256(msg.value))), // should payment fee == msg.value?
-            ","
+            SQLHelpers.quote(Strings.toString(uint256(msg.value))) // should payment fee == msg.value?
         )
         )
     );
@@ -131,8 +130,6 @@ contract Sessions is ERC721Holder {
             payable(_session.student).transfer(
                 fetchMentorsPrice(_session.mentor)
             );
-            // delete the session
-            // do this with tableland
 
             // make it inactive
             _session.isActive = false;
@@ -148,6 +145,7 @@ contract Sessions is ERC721Holder {
         );
         require(_session.isActive == false, "Already accepted");
         _session.isActive = true;
+        // update isAccepted variable in tableland
         payable(_session.mentor).transfer(fetchMentorsPrice(_session.mentor));
         sessionsMentoredCount[_session.mentor] += 1;
         sessionsAttendedCount[_session.student] += 1;
