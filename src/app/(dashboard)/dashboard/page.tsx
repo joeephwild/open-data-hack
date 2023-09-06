@@ -42,7 +42,7 @@ const Dashboard = () => {
           </div>
           <div className="flex items-center space-x-[24px]">
             {languageCommunity.slice(0, 2).map((item, i) => (
-              <CommunityCard {...item} />
+              <CommunityCard {...item} key={i} />
             ))}
           </div>
         </div>
@@ -62,7 +62,7 @@ const Dashboard = () => {
           </div>
           <div className="flex flex-wrap items-start space-x-[24px]">
             {Mentors.slice(0, 4).map((item, i) => (
-              <MentorsCard {...item} />
+              <MentorsCard {...item} key={i} />
             ))}
           </div>
         </div>

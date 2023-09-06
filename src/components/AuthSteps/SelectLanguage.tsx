@@ -44,14 +44,14 @@ const SelectLanguage = () => {
             Choose Your Language
           </span>
           <p className="text-[#CCCCCCAA] w-[413px] text-[20px] leading-normal font-semibold">
-            Select the language you're eager to master and uncover new
+            Select the language you`re eager to master and uncover new
             opportunities
           </p>
         </div>
 
         <select className="w-full border bg-transparent h-[56px] placeholder:text-[#ccccccaa] px-[24px] py-[16px] items-center justify-center rounded-[8px]  border-[#aaa]">
           {category.map((item, i) => (
-            <option value={item.value}>{item.title}</option>
+            <option key={i} value={item.value}>{item.title}</option>
           ))}
         </select>
       </label>
@@ -62,14 +62,14 @@ const SelectLanguage = () => {
             Proficiency Level
           </span>
           <p className="text-[#CCCCCCAA] w-[413px] text-[20px] leading-normal font-semibold">
-            Tell us your current skill level in [Selected Language]. We'll
+            Tell us your current skill level in [Selected Language]. We`ll
             personalize your learning experience accordingly.
           </p>
         </div>
 
         <select className="w-full border bg-transparent h-[56px] placeholder:text-[#ccccccaa] px-[24px] py-[16px] items-center justify-center rounded-[8px]  border-[#aaa]">
           {category.map((item, i) => (
-            <option value={item.value}>{item.title}</option>
+            <option key={i} value={item.value}>{item.title}</option>
           ))}
         </select>
       </label>

@@ -11,7 +11,7 @@ const CreateProfile = () => {
         </h1>
         <p className="text-[16px] font-semibold leading-normal text-[#CCCCCCAA] w-[60%] tracking-widest">
           To tailor your experience and help you connect with fellow learners,
-          set up your profile today. Let's get started on your learning journey!
+          set up your profile today. Let`s get started on your learning journey!
         </p>
       </div>
       <form action="" className="mt-[40px] max-w-5xl">

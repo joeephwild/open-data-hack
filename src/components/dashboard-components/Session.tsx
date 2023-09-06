@@ -7,7 +7,7 @@ const Session = () => {
     <div className="w-[23%] h-screen py-[40px] pr-[40px]">
       <div className="session-background w-full h-[90%] flex flex-col space-y-[16px] items-center px-[24px] py-[40px]">
         {MyLesson.map((item, i) => (
-          <div className="bg-gradient-to-r w-[99%] from-[#008cff]  to-[#008cff] p-[24px] ">
+          <div key={i} className="bg-gradient-to-r w-[99%] from-[#008cff]  to-[#008cff] p-[24px] ">
             <div className="flex items-start space-x-[16px]">
               <Image
                 src={item.image}
