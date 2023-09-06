@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-  @apply bg-[#121214] bg-map object-contain object-center text-[#fff];
+body {
+  @apply bg-[#121214]  text-[#fff] font-Jost-VariableFont overflow-hidden;
+}
+
+@font-face {
+  font-family: Jost-VariableFont;
+  src: url("../assests/fonts/Jost-VariableFont_wght.ttf");
+}
+
+.session-background {
+  background: linear-gradient(90deg, rgba(0, 101, 181, 0.40) 0%, rgba(0, 142, 255, 0.40) 100%);
 }
