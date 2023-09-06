@@ -1,21 +1,24 @@
 import React from "react";
 
-const Intro = () => {
+const Intro = ({next}: any) => {
   return (
-    <div className="space-y-[16px] place-items-center">
-      <h1 className="text-[48px] font-bold leading-normal">
-        Welcome to Verbal Learning
+    <div className="space-y-[16px] place-items-center mt-[20%]">
+      <h1 className="lg:text-[48px] w-[448p]  md:text-[30px]">
+        Welcome to <br /> Verbal Language
       </h1>
-      <span className="text-center w-[410px] text-[20px] font-bold text-[#CCCCCCAA]">
+      <p className="w-[419px] text-[#CCCCCCAA] font-semibold">
         Experience revolutionary learning with blockchain technology and
-        AI-tailored lessons, connecting with a vibrant community.
-      </span>
-      <div className="flex-col items-centert mt-[40px] space-y-[24px]">
-        <button className="bg-[#f70] w-[80%] py-2.5 text-[16px] font-bold rounded-[8px]">
+        AI-tailored lessons, connecting with a vibrant community.{" "}
+      </p>
+      <div className="pt-[40px] space-y-[40px] flex-col flex">
+        <a href="#createaccount">
+          <button onClick={next} className="bg-[#FF7700] w-[50%] py-[17px] rounded-[8px] text-[16px] font-bold leading-normal">
+            Get Started
+          </button>
+        </a>
+
+        <button className="border border-[#FF7700] w-[50%] py-[17px] rounded-[8px] text-[16px] font-bold leading-normal">
           Get Started
-        </button>
-        <button className="border-2 border-[#f70] w-[80%] py-2.5 text-[16px] font-bold rounded-[8px]">
-          Login
         </button>
       </div>
     </div>
