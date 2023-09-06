@@ -1,10 +1,12 @@
 import { arrows } from "@/assests/images";
+import { CommunityCard, MentorsCard } from "@/components";
+import { Mentors, languageCommunity } from "@/utils";
 import Image from "next/image";
 import { SlCalender } from "react-icons/sl";
 
 const Dashboard = () => {
   return (
-    <div className="">
+    <div className="mb-9">
       {/** top section */}
       <div className="flex items-center justify-between py-[40px] px-[24px]">
         <div className="w-[193px] relative">
@@ -25,11 +27,47 @@ const Dashboard = () => {
           </span>
         </div>
       </div>
-         {/** top section ends */}
+      {/** top section ends */}
 
+      {/** lessons sections */}
+      <div className="flex px-[24px] flex-col itesm-center space-y-[40px]">
+        <div className="">
+          <div className="flex items-center justify-between ">
+            <h1 className="text-[20px] font-bold leading-normal">
+              Communities
+            </h1>
+            <p className="text-[16px] font-bold text-[#CCCCCCCC] cursor-pointer">
+              See all
+            </p>
+          </div>
+          <div className="flex items-center space-x-[24px]">
+            {languageCommunity.slice(0, 2).map((item, i) => (
+              <CommunityCard {...item} />
+            ))}
+          </div>
+        </div>
+      </div>
+      {/** lessons sections ends */}
 
-         {/** lessons sections */}
-         <div></div>
+      {/** Mentors sections */}
+      <div className="flex px-[24px] flex-col itesm-center space-y-[40px]">
+        <div className="">
+          <div className="flex items-center justify-between ">
+            <h1 className="text-[20px] font-bold leading-normal">
+              Communities
+            </h1>
+            <p className="text-[16px] font-bold text-[#CCCCCCCC] cursor-pointer">
+              See all
+            </p>
+          </div>
+          <div className="flex flex-wrap items-start space-x-[24px]">
+            {Mentors.slice(0, 4).map((item, i) => (
+              <MentorsCard {...item} />
+            ))}
+          </div>
+        </div>
+      </div>
+      {/** Mentors sections end */}
     </div>
   );
 };

@@ -2,7 +2,7 @@
 import { Tab } from "@/utils";
 import Link from "next/link";
 import React, { useState } from "react";
-import { BsFillPlusCircleFill } from 'react-icons/bs'
+import { BsFillPlusCircleFill } from "react-icons/bs";
 
 const Sidebar = () => {
   const [active, setActive] = useState("home");
@@ -12,6 +12,7 @@ const Sidebar = () => {
         {Tab.map((item, i) => (
           <Link href={item.route} key={i}>
             <item.icon
+              onClick={() => setActive(item.active)}
               size={40}
               className={`${
                 active === item.active ? "text-[#008EFF]" : "text-[#fff]"
@@ -19,7 +20,11 @@ const Sidebar = () => {
             />
           </Link>
         ))}
-        <BsFillPlusCircleFill size={60} color="#f70" className="cursor-pointer"/>
+        <BsFillPlusCircleFill
+          size={60}
+          color="#f70"
+          className="cursor-pointer"
+        />
       </div>
     </div>
   );
