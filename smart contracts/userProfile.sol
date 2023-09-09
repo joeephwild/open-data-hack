@@ -31,9 +31,9 @@ contract UserProfile {
         _studentTableId = TablelandDeployments.get().create( // creating a table ID
             address(this), // setting it's owner to the address for easy write access
             SQLHelpers.toCreateFromSchema(
-                "studentId integer primary key," // Notice the trailing comma // the primary key of the table
+                "studentId integer primary key," // the primary key of the table
                 "student text,",
-                _STUDENT_TABLE_PREFIX // the needed prefix for table (I guess a ttable name)
+                _STUDENT_TABLE_PREFIX // the needed prefix for table
             )
         );
     }
@@ -43,9 +43,16 @@ contract UserProfile {
         _mentorTableId = TablelandDeployments.get().create( // creating a table ID
             address(this), // setting it's owner to the address for easy write access
             SQLHelpers.toCreateFromSchema(
-                "mentorId integer primary key," // Notice the trailing comma // the primary key of the table
-                "mentor text,",
-                _MENTOR_TABLE_PREFIX // the needed prefix for table (I guess a ttable name)
+                "mentorId integer primary key," // the primary key of the table
+                "name text,",
+                "nickname text,",
+                "experience text,",
+                "languages text[],",
+                "availability text[],",
+                "additionalInfo text,",
+                "profileImage text,",
+                "coverImage text",
+                _MENTOR_TABLE_PREFIX // the needed prefix for table
             )
         );
     }
@@ -74,25 +81,51 @@ contract UserProfile {
     }
 
     // function to add student
-    function addMentor() public {
+    function addMentor(string memory name, string memory nickname, uint256 experience, string[] memory languages, string[] memory availability, string memory additionalInfo, string memory profileImage, string memory coverImage) public {
         require(isMentor[msg.sender] != true, "You are already a Mentor");
 
+        string memory languageString = concatArray(languages);
+        string memory availabilityString = concatArray(availability);
+        
         TablelandDeployments.get().mutate(
         address(this),
         _mentorTableId,
         SQLHelpers.toInsert(
         _MENTOR_TABLE_PREFIX,
         _mentorTableId,
-        "mentorId,mentor",
+        "mentorId,name,nickname,experience,languages,availability,additionalInfo,profileImage,coverImage",
         string.concat(
             Strings.toString(_mentorID.current()),
             ",",
-            SQLHelpers.quote(Strings.toHexString(msg.sender))
+            SQLHelpers.quote()
         )
         )
     );
 
     isMentor[msg.sender] = true;
     _mentorID.increment();
+    }
+
+    function concatArray(string[] memory items) public pure returns (string memory) {
+        string memory queryString;
+        for (uint i = 0; i < fields.length; i++) {
+            if (i == 0) {
+            queryString = string.concat(
+                "{", items[i], ","
+            );
+            } else if(i == (fields.length - 1)) {
+            queryString = string.concat(
+                queryString,
+                items[i], "}"
+            );
+            }
+            else {
+            queryString = string.concat(
+                queryString,
+                items[i], ","
+            );
+            }
+        }
+        return queryString;
     }
 }

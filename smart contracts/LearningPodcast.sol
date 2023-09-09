@@ -20,7 +20,8 @@ contract Podcasts is ERC721Holder {
     }
 
     uint256 public _tableId;
-    string private constant _TABLE_PREFIX = "podcastTable";
+    string public _TABLE_PREFIX;
+    string public tableName;
     address public owner;
 
     mapping(address => uint[]) userToPodcasts;
@@ -35,6 +36,8 @@ contract Podcasts is ERC721Holder {
 
     constructor() {
         owner = msg.sender;
+        _TABLE_PREFIX = "podcastTable";
+        createPodcastTable();
     }
 
     // create podcast table
@@ -46,10 +49,14 @@ contract Podcasts is ERC721Holder {
                 "ipfsHash text," // Separate lines for readability—but it's a single string // value to be added
                 "owner text,"
                 "amount bigNumber," // research on big number
-                "supporters array,"
-                "totalSupport bigNumber,",
+                "supporters text[],"
+                "totalSupport bigNumber",
                 _TABLE_PREFIX // the needed prefix for table (I guess a ttable name)
             )
+        );
+
+        tableName = string.concat(
+            _TABLE_PREFIX, "_", Strings.toString(block.chainid), "_", Strings.toString(_tableId)
         );
     }
 
@@ -74,18 +81,18 @@ contract Podcasts is ERC721Holder {
             ",",
             SQLHelpers.quote(Strings.toString(_amount)),
             ",",
-            "[]",
+            "{}",
             ",",
             SQLHelpers.quote(Strings.toString(uint256(0)))
                 )
             )
         );
 
-        userToPodcasts[msg.sender].push(id);
+        userToPodcasts[msg.sender].push(_podcastID.current());
 
         _podcastID.increment();
 
-        emit PodcastUploaded(id, msg.sender, _ipfsHash);
+        emit PodcastUploaded(_podcastID.current(), msg.sender, _ipfsHash);
     }
 
     function supportPodcast(uint256 _id) external payable podcastExists(_id) {
@@ -96,11 +103,29 @@ contract Podcasts is ERC721Holder {
         );
         require(msg.value == podcast.amount, "You must send the exact amount");
 
-        // update all these value in tableland
         podcast.totalSupport += msg.value;
         payable(podcast.owner).transfer(msg.value);
         supportCount[msg.sender] += 1;
         // check if supporter already exists in the array
         podcast.supporters.push(msg.sender);
-    }  
+        // update all these value in tableland
+        string memory setters = string.concat("totalSupport=", SQLHelpers.quote(Strings.toString(podcast.totalSupport)));
+        string memory filters = string.concat("podcastId", SQLHelpers.quote(Strings.toString(_id)));
+
+        TablelandDeployments.get().mutate(
+            address(this),
+            _tableId,
+            SQLHelpers.toUpdate(
+                _TABLE_PREFIX,
+                _tableId,
+                setters,
+                filters
+            )
+        );
+    }
+
+    modifier podcastExists(uint256 _id) {
+        require(_id < _podcastID.current(), "Podcast ID does not exist");
+        _;
+    }
 }

@@ -24,7 +24,8 @@ contract Sessions is ERC721Holder {
     );
 
     uint256 public _tableId;
-    string private constant _TABLE_PREFIX = "sessionTable";
+    string private _TABLE_PREFIX;
+    string public tableName;
     address public owner;
 
     struct session {
@@ -43,6 +44,8 @@ contract Sessions is ERC721Holder {
 
     constructor() {
         owner = msg.sender;
+        _TABLE_PREFIX = "sessionTable";
+        createSessionTable();
     }
 
     function createSessionTable() public {
@@ -56,9 +59,13 @@ contract Sessions is ERC721Holder {
                 "startTime text,"
                 "endTime text,"
                 "meetingLink text,"
-                "paymentFee text,",
+                "paymentFee text",
                 _TABLE_PREFIX // the needed prefix for table (I guess a ttable name)
             )
+        );
+
+        tableName = string.concat(
+            _TABLE_PREFIX, "_", Strings.toString(block.chainid), "_", Strings.toString(_tableId)
         );
     }
 
@@ -145,12 +152,25 @@ contract Sessions is ERC721Holder {
         );
         require(_session.isActive == false, "Already accepted");
         _session.isActive = true;
-        // update isAccepted variable in tableland
         payable(_session.mentor).transfer(fetchMentorsPrice(_session.mentor));
         sessionsMentoredCount[_session.mentor] += 1;
         sessionsAttendedCount[_session.student] += 1;
 
-        // addressToSessions[session.student].isAccepted = true;
+        // update isAccepted variable in tableland
+        string memory setters = string.concat("isAccepted=", "true");
+        string memory filters = string.concat("sessionId", SQLHelpers.quote(Strings.toString(_sessionId)));
+
+        TablelandDeployments.get().mutate(
+            address(this),
+            _tableId,
+            SQLHelpers.toUpdate(
+                _TABLE_PREFIX,
+                _tableId,
+                setters,
+                filters
+            )
+        );
+
         emit SessionAccepted(_sessionId);
     }  
 
