@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 type Props = {
@@ -9,7 +10,10 @@ type Props = {
 
 const CommunityCard = ({ image, name, num_people }: Props) => {
   return (
-    <div className="bg-[#fff] my-[24px] py-[24px] px-[40px] text-[#000] w-[40%] h-[255px]">
+    <Link
+      href={`/community/${name}`}
+      className="bg-[#fff] my-[24px] py-[24px] px-[40px] text-[#000] w-[40%] h-[255px]"
+    >
       <div className="flex items-start space-x-[16px]">
         <Image
           src={image}
@@ -31,7 +35,7 @@ const CommunityCard = ({ image, name, num_people }: Props) => {
         We are focused on ensuring our members meet tutors who will volunteer to
         help hit their milestone and learn English...
       </span>
-    </div>
+    </Link>
   );
 };
 

@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Navbar />
-        <div className="flex items-start gap-">
+        <div className="flex items-start gap-5">
           <Sidebar />
           <div className="w-[70%] h-screen overflow-y-scroll scrollbar-hide">{children}</div>
           <Session />
