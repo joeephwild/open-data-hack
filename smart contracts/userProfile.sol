@@ -32,7 +32,11 @@ contract UserProfile {
             address(this), // setting it's owner to the address for easy write access
             SQLHelpers.toCreateFromSchema(
                 "studentId integer primary key," // the primary key of the table
-                "student text,",
+                "name text,"
+                "nickname text,"
+                "additionalInfo text,"
+                "profileImage text,"
+                "coverImage text",
                 _STUDENT_TABLE_PREFIX // the needed prefix for table
             )
         );
@@ -44,13 +48,13 @@ contract UserProfile {
             address(this), // setting it's owner to the address for easy write access
             SQLHelpers.toCreateFromSchema(
                 "mentorId integer primary key," // the primary key of the table
-                "name text,",
-                "nickname text,",
-                "experience text,",
-                "languages text[],",
-                "availability text[],",
-                "additionalInfo text,",
-                "profileImage text,",
+                "name text,"
+                "nickname text,"
+                "experience text,"
+                "languages text[],"
+                "availability text[],"
+                "additionalInfo text,"
+                "profileImage text,"
                 "coverImage text",
                 _MENTOR_TABLE_PREFIX // the needed prefix for table
             )
@@ -58,7 +62,7 @@ contract UserProfile {
     }
 
     // function to add student
-    function addStudent() public {
+    function addStudent(string memory name, string memory nickname, string memory additionalInfo, string memory profileImage, string memory coverImage) public {
         require(isStudent[msg.sender] != true, "You are already a student");
 
         TablelandDeployments.get().mutate(
@@ -67,11 +71,19 @@ contract UserProfile {
         SQLHelpers.toInsert(
         _STUDENT_TABLE_PREFIX,
         _studentTableId,
-        "studentId,student",
+        "studentId,name,nickname,additionalInfo,profileImage,coverImage",
         string.concat(
             Strings.toString(_studentID.current()),
             ",",
-            SQLHelpers.quote(Strings.toHexString(msg.sender))
+            SQLHelpers.quote(name),
+            ",",
+            SQLHelpers.quote(nickname),
+            ",",              
+            SQLHelpers.quote(additionalInfo),
+            ",",
+            SQLHelpers.quote(profileImage),
+            ",",
+            SQLHelpers.quote(coverImage)
         )
         )
     );
@@ -81,11 +93,9 @@ contract UserProfile {
     }
 
     // function to add student
-    function addMentor(string memory name, string memory nickname, uint256 experience, string[] memory languages, string[] memory availability, string memory additionalInfo, string memory profileImage, string memory coverImage) public {
+    function addMentor(string[] memory details, string[] memory languages, string[] memory availability) public {
         require(isMentor[msg.sender] != true, "You are already a Mentor");
-
-        string memory languageString = concatArray(languages);
-        string memory availabilityString = concatArray(availability);
+        string memory createString = concatWriteQuery(_mentorID.current(), details, languages, availability);
         
         TablelandDeployments.get().mutate(
         address(this),
@@ -94,11 +104,7 @@ contract UserProfile {
         _MENTOR_TABLE_PREFIX,
         _mentorTableId,
         "mentorId,name,nickname,experience,languages,availability,additionalInfo,profileImage,coverImage",
-        string.concat(
-            Strings.toString(_mentorID.current()),
-            ",",
-            SQLHelpers.quote()
-        )
+        createString
         )
     );
 
@@ -108,12 +114,12 @@ contract UserProfile {
 
     function concatArray(string[] memory items) public pure returns (string memory) {
         string memory queryString;
-        for (uint i = 0; i < fields.length; i++) {
+        for (uint i = 0; i < items.length; i++) {
             if (i == 0) {
             queryString = string.concat(
                 "{", items[i], ","
             );
-            } else if(i == (fields.length - 1)) {
+            } else if(i == (items.length - 1)) {
             queryString = string.concat(
                 queryString,
                 items[i], "}"
@@ -127,5 +133,41 @@ contract UserProfile {
             }
         }
         return queryString;
+    }
+
+    function concatWriteQuery(uint256 id, string[] memory details, string[] memory languages, string[] memory availability) public pure returns(string memory queryString) {
+        require(details.length > 5, "array too short");
+        string memory languageString = concatArray(languages);
+        string memory availabilityString = concatArray(availability);
+
+        for (uint i = 0; i < details.length; i++) {
+            if (i == 0) {
+            queryString = string.concat(
+                Strings.toString(id),
+                ",",
+                SQLHelpers.quote(details[0])
+            );
+            } else if(i == 2) {
+            queryString = string.concat(
+                queryString,
+                SQLHelpers.quote(details[i]),
+                SQLHelpers.quote(languageString),
+                ",",
+                SQLHelpers.quote(availabilityString),
+                ","
+            );
+            } else if(i == (details.length - 1)) {
+            queryString = string.concat(
+                queryString,
+                SQLHelpers.quote(details[i])
+            );
+            }
+            else {
+            queryString = string.concat(
+                queryString,
+                SQLHelpers.quote(details[i]), ","
+            );
+            }
+        }
     }
 }
