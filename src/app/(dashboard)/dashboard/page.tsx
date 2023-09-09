@@ -60,7 +60,7 @@ const Dashboard = () => {
               See all
             </p>
           </div>
-          <div className="flex flex-wrap items-start space-x-[24px]">
+          <div className="flex flex-wrap items-start justify-start w-full space-x-[24px]">
             {Mentors.slice(0, 4).map((item, i) => (
               <MentorsCard {...item} key={i} />
             ))}
