@@ -1,3 +1,4 @@
+"use client";
 import { arrows } from "@/assests/images";
 import { CommunityCard, MentorsCard } from "@/components";
 import { Mentors, languageCommunity } from "@/utils";
@@ -5,8 +6,10 @@ import Image from "next/image";
 import { SlCalender } from "react-icons/sl";
 
 const Dashboard = () => {
+  
   return (
     <div className="mb-9">
+     
       {/** top section */}
       <div className="flex items-center justify-between py-[40px] px-[24px]">
         <div className="w-[193px] relative">
@@ -62,8 +65,11 @@ const Dashboard = () => {
             <MentorsCard {...item} key={i} />
           ))}
         </div>
+   
       </div>
       {/** Mentors sections end */}
+
+    
     </div>
   );
 };

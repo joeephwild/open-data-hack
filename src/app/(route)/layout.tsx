@@ -29,7 +29,7 @@ export default function RootLayout({
             {isOpen && <UploadModal />}
             {children}
           </div>
-          <Session />
+       
         </div>
       </body>
     </html>

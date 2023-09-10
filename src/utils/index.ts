@@ -1,7 +1,9 @@
 import { AiFillHome, AiFillRobot } from "react-icons/ai";
 import { HiUserGroup } from "react-icons/hi";
-import { BsFillMicFill } from "react-icons/bs";
+import { BsFillMicFill, BsHeadset } from "react-icons/bs";
 import { IoNotificationsSharp } from "react-icons/io5";
+import { FaRegCalendarAlt } from "react-icons/fa";
+import { MdGroups2, MdVideoLibrary } from "react-icons/md";
 
 export const intro = [
   {
@@ -18,6 +20,33 @@ export const intro = [
     title: "Community and Live sessions",
     color: "#E03616",
     desc: "Engage with fellow learners and experienced teachers in live sessions, discussions, and collaborative challenges.",
+  },
+];
+
+const Tab2 = [
+  {
+    title: "Schedule",
+    icon: FaRegCalendarAlt,
+    active: "home",
+    route: "/dashboard",
+  },
+  {
+    title: "Create a Community",
+    icon: MdGroups2,
+    active: "ai",
+    route: "/ai",
+  },
+  {
+    title: "Podcasts",
+    icon: BsHeadset,
+    active: "community",
+    route: "",
+  },
+  {
+    title: "Go Live",
+    icon: MdVideoLibrary,
+    active: "podcast",
+    route: "",
   },
 ];
 
@@ -142,7 +171,7 @@ const MyLesson = [
   },
 ];
 
- const languageCommunity = [
+const languageCommunity = [
   {
     name: "English",
     image:
@@ -187,5 +216,4 @@ const MyLesson = [
   },
 ];
 
-
-export { Tab, MyLesson, Mentors, languageCommunity };
+export { Tab, MyLesson, Mentors, languageCommunity, Tab2 };

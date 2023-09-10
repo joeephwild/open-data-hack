@@ -3,7 +3,7 @@
 import { books, profile, task } from "@/assests/images";
 import { MyLesson } from "@/utils";
 import Image from "next/image";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
 interface Props {
@@ -11,6 +11,8 @@ interface Props {
 }
 
 const SessionDeails = ({ params }: Props) => {
+  const router = useRouter()
+
   useEffect(() => {
     const getSessionDetails = () => {
       const filterSession = MyLesson.filter(
@@ -39,7 +41,7 @@ const SessionDeails = ({ params }: Props) => {
               <p>With Anita Baker</p>
             </div>
           </div>
-          <button className="bg-[#f70] w-[50%] py-[17px] rounded-[8px]">
+          <button onClick={() => router.push(`/studio/qazb-rig-irut`)} className="bg-[#f70] w-[50%] py-[17px] rounded-[8px]">
             Join video session
           </button>
         </div>

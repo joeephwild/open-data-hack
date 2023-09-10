@@ -15,7 +15,7 @@ type Props = {
 
 const MentorsCard = ({ name, languages, profileImage }: Props) => {
   return (
-      <Link href={`/${name}`} className="bg-gradient-to-r from-[#008EFF] to-[#0065B5] min-w-[46%] my-4 p-[24px] rounded-lg shadow-lg cursor-pointer">
+      <div className="bg-gradient-to-r from-[#008EFF] to-[#0065B5] min-w-[46%] my-4 p-[24px] rounded-lg shadow-lg cursor-pointer">
         <div className="flex items-center space-x-4">
           <div className="relative w-16 h-16">
             <Image
@@ -31,7 +31,7 @@ const MentorsCard = ({ name, languages, profileImage }: Props) => {
             <p className="text-base">{languages[0]}</p>
           </div>
         </div>
-      </Link>
+      </div>
   );
 };
 
