@@ -1,3 +1,4 @@
+"use client";
 import { arrows } from "@/assests/images";
 import { CommunityCard, MentorsCard } from "@/components";
 import { Mentors, languageCommunity } from "@/utils";
@@ -5,8 +6,10 @@ import Image from "next/image";
 import { SlCalender } from "react-icons/sl";
 
 const Dashboard = () => {
+  
   return (
     <div className="mb-9">
+     
       {/** top section */}
       <div className="flex items-center justify-between py-[40px] px-[24px]">
         <div className="w-[193px] relative">
@@ -50,24 +53,23 @@ const Dashboard = () => {
       {/** lessons sections ends */}
 
       {/** Mentors sections */}
-      <div className="flex px-[24px] flex-col itesm-center space-y-[40px]">
-        <div className="">
-          <div className="flex items-center justify-between ">
-            <h1 className="text-[20px] font-bold leading-normal">
-              Communities
-            </h1>
-            <p className="text-[16px] font-bold text-[#CCCCCCCC] cursor-pointer">
-              See all
-            </p>
-          </div>
-          <div className="flex flex-wrap items-start justify-start w-full space-x-[24px]">
-            {Mentors.slice(0, 4).map((item, i) => (
-              <MentorsCard {...item} key={i} />
-            ))}
-          </div>
+      <div className="flex mx-[24px] flex-col itesm-center space-y-[40px]">
+        <div className="flex items-center justify-between ">
+          <h1 className="text-[20px] font-bold leading-normal">Communities</h1>
+          <p className="text-[16px] font-bold text-[#CCCCCCCC] cursor-pointer">
+            See all
+          </p>
         </div>
+        <div className="inline-flex flex-wrap items-start justify-start w-full space-x-[24px]">
+          {Mentors.slice(0, 4).map((item, i) => (
+            <MentorsCard {...item} key={i} />
+          ))}
+        </div>
+   
       </div>
       {/** Mentors sections end */}
+
+    
     </div>
   );
 };

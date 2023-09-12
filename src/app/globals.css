@@ -14,3 +14,7 @@ body {
 .session-background {
   background: linear-gradient(90deg, rgba(0, 101, 181, 0.40) 0%, rgba(0, 142, 255, 0.40) 100%);
 }
+
+.background {
+  background: var(--Blue-GRD, linear-gradient(90deg, #008EFF 0%, #0065B5 100%));
+}

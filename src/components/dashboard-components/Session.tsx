@@ -1,5 +1,6 @@
 import { MyLesson } from "@/utils";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const Session = () => {
@@ -7,7 +8,7 @@ const Session = () => {
     <div className="w-[23%] h-screen py-[40px] pr-[40px]">
       <div className="session-background w-full h-[90%] flex flex-col space-y-[16px] items-center px-[24px] py-[40px]">
         {MyLesson.map((item, i) => (
-          <div key={i} className="bg-gradient-to-r w-[99%] from-[#008cff]  to-[#008cff] p-[24px] ">
+          <Link href={`/${item.course}`} key={i} className="bg-gradient-to-r w-[99%] from-[#008cff]  to-[#008cff] p-[24px] ">
             <div className="flex items-start space-x-[16px]">
               <Image
                 src={item.image}
@@ -33,7 +34,7 @@ const Session = () => {
                 {item.period}
               </span>
             </div>
-          </div>
+          </Link>
         ))}
         <span className="text-[12px] font-semibold leading-normal text-end items-end justify-end">see all</span>
       </div>
