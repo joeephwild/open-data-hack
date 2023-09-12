@@ -24,15 +24,14 @@ contract Sessions is ERC721Holder {
     );
 
     uint256 public _tableId;
-    string private _TABLE_PREFIX;
+    string internal _TABLE_PREFIX = "sessionTable";
     string public tableName;
     address public owner;
 
     struct session {
         address student;
         address mentor;
-        uint256 startTime;
-        uint256 endTime;
+        uint256 time;
         bool isActive;
     }
 
@@ -44,7 +43,6 @@ contract Sessions is ERC721Holder {
 
     constructor() {
         owner = msg.sender;
-        _TABLE_PREFIX = "sessionTable";
         createSessionTable();
     }
 
@@ -55,30 +53,33 @@ contract Sessions is ERC721Holder {
                 "sessionId integer primary key," // Notice the trailing comma // the primary key of the table
                 "mentor text," // Separate lines for readability—but it's a single string // value to be added
                 "student text,"
-                "isAccepted bool,"
-                "startTime text,"
-                "endTime text,"
+                "isAccepted NUMBER(1),"
+                "time text,"
                 "meetingLink text,"
                 "paymentFee text",
                 _TABLE_PREFIX // the needed prefix for table (I guess a ttable name)
             )
         );
 
-        tableName = string.concat(
-            _TABLE_PREFIX, "_", Strings.toString(block.chainid), "_", Strings.toString(_tableId)
-        );
+        tableName = string(
+                abi.encodePacked(
+                    _TABLE_PREFIX,
+                    "_",
+                    Strings.toString(block.chainid),
+                    "_",
+                    Strings.toString(_tableId)
+                )
+            );
     }
 
     function scheduleSession(
         address _mentor,
-        uint256 _startTime,
-        uint256 _endTime,
-        string memory _meetingLink) external payable {
+        string memory _meetingLink,
+        uint256 time) external payable {
         require(fetchMentorsPrice(_mentor) != 0, "Invalid Mentor");
         require(msg.value >= fetchMentorsPrice(_mentor), "Cant pay mentor");
 
-        sessions[_sessionID.current()].startTime = _startTime;
-        sessions[_sessionID.current()].endTime = _endTime;
+        sessions[_sessionID.current()].time = time;
         sessions[_sessionID.current()].isActive = true;
 
         TablelandDeployments.get().mutate(
@@ -87,7 +88,7 @@ contract Sessions is ERC721Holder {
         SQLHelpers.toInsert(
         _TABLE_PREFIX,
         _tableId,
-        "sessionId,mentor,student,isAccepted,timestamp,meetingLink,paymentFee",
+        "sessionId,mentor,student,isAccepted,time,meetingLink,paymentFee",
         string.concat(
             Strings.toString(_sessionID.current()),
             ",",
@@ -95,15 +96,13 @@ contract Sessions is ERC721Holder {
             ",",
             SQLHelpers.quote(Strings.toHexString(msg.sender)),
             ",",
-            "false",
+            Strings.toString(uint256(0)),
             ",",
-            SQLHelpers.quote(Strings.toString(_startTime)),
+            SQLHelpers.quote(Strings.toString(time)),
             ",",
-            SQLHelpers.quote(Strings.toString(_endTime)),
+            SQLHelpers.quote(_meetingLink),
             ",",
-            _meetingLink,
-            ",",
-            SQLHelpers.quote(Strings.toString(uint256(msg.value))) // should payment fee == msg.value?
+            SQLHelpers.quote(Strings.toString(msg.value)) // should payment fee == msg.value?
         )
         )
     );

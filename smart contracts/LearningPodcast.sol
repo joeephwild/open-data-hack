@@ -20,7 +20,7 @@ contract Podcasts is ERC721Holder {
     }
 
     uint256 public _tableId;
-    string public _TABLE_PREFIX;
+    string public _TABLE_PREFIX = "podcastTable";
     string public tableName;
     address public owner;
 
@@ -36,7 +36,6 @@ contract Podcasts is ERC721Holder {
 
     constructor() {
         owner = msg.sender;
-        _TABLE_PREFIX = "podcastTable";
         createPodcastTable();
     }
 
@@ -48,20 +47,25 @@ contract Podcasts is ERC721Holder {
                 "podcastId integer primary key," // Notice the trailing comma // the primary key of the table
                 "ipfsHash text," // Separate lines for readability—but it's a single string // value to be added
                 "owner text,"
-                "amount bigNumber," // research on big number
-                "supporters text[],"
-                "totalSupport bigNumber",
+                "amount integer,"
+                "totalSupport integer",
                 _TABLE_PREFIX // the needed prefix for table (I guess a ttable name)
             )
         );
 
-        tableName = string.concat(
-            _TABLE_PREFIX, "_", Strings.toString(block.chainid), "_", Strings.toString(_tableId)
-        );
+        tableName = string(
+                abi.encodePacked(
+                    _TABLE_PREFIX,
+                    "_",
+                    Strings.toString(block.chainid),
+                    "_",
+                    Strings.toString(_tableId)
+                )
+            );
     }
 
     //IPFS HASH SHOULD ALSO CONTAIN THE iMAGE LINK AND TITLE
-    function uploadPodcast(string memory _ipfsHash, uint256 _amount) external payable {
+    function uploadPodcast(string memory _ipfsHash, uint256 _amount) public payable {
         require(bytes(_ipfsHash).length > 0, "IPFS hash cannot be empty");
         require(_amount > 0, "Amount must be greater than zero");
 
@@ -71,7 +75,7 @@ contract Podcasts is ERC721Holder {
         SQLHelpers.toInsert(
         _TABLE_PREFIX,
         _tableId,
-        "podcastId,ipfsHash,owner,amount,supporters,totalSupport",
+        "podcastId,ipfsHash,owner,amount,totalSupport",
         string.concat(
             Strings.toString(_podcastID.current()),
             ",",
@@ -79,12 +83,10 @@ contract Podcasts is ERC721Holder {
             ",",
             SQLHelpers.quote(Strings.toHexString(msg.sender)),
             ",",
-            SQLHelpers.quote(Strings.toString(_amount)),
+            Strings.toString(_amount),
             ",",
-            "{}",
-            ",",
-            SQLHelpers.quote(Strings.toString(uint256(0)))
-                )
+            Strings.toString(uint256(0))
+            )
             )
         );
 
