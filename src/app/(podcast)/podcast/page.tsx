@@ -27,7 +27,7 @@ const PodcastSection = () => {
         <h2 className="text-[34px] font-black leading-normal">Podcasts</h2>
         <div className="flex items-start gap-10 mt-[16px] scrollbar-hide overflow-x-scroll">
           {category.map((item, i) => (
-            <button className="bg-[#2F3142] py-[13px] px-[20px] rounded-[36px] ">
+            <button key={i} className="bg-[#2F3142] py-[13px] px-[20px] rounded-[36px] ">
               <span>{item}</span>
             </button>
           ))}
@@ -36,7 +36,7 @@ const PodcastSection = () => {
         <div>
           <div className="flex flex-wrap gap-10 my-[16px]">
             {Podcast.map((item, i) => (
-              <div>
+              <div key={i}>
                 <Image
                   src={item.image}
                   alt="podcast"

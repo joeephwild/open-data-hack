@@ -29,7 +29,7 @@ const SessionDeails = ({ params }: Props) => {
   return (
     <div className="w-full mx-[26px]  my-[40px]">
       {sessionDetails.map((item: Lesson, i: number) => (
-        <div className="w-full py-[40px] px-[24px] background ">
+        <div key={i} className="w-full py-[40px] px-[24px] background ">
           <div className="flex items-center justify-between px-9 w-full">
             <div className="flex items-center space-x-4">
               <Image

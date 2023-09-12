@@ -8,7 +8,7 @@ const AiChat = () => {
         <div className="flex flex-col h-full items-center justify-center">
           <span>Verbal AI</span>
           <span>
-            I'm here to help you with whatever Language you want to learn, send
+            I`m here to help you with whatever Language you want to learn, send
             a message let`s start learning.
           </span>
         </div>
