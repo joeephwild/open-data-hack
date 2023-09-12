@@ -37,7 +37,7 @@ const Tab2 = [
     route: "/ai",
   },
   {
-    title: "Podcasts",
+    title: "Upload Podcasts",
     icon: BsHeadset,
     active: "community",
     route: "",
@@ -60,7 +60,7 @@ const Tab = [
   {
     title: "Inbox",
     icon: AiFillRobot,
-    active: "ai",
+    active: "Artificail Intelligence",
     route: "/ai",
   },
   {
@@ -73,7 +73,7 @@ const Tab = [
     title: "Notification",
     icon: BsFillMicFill,
     active: "podcast",
-    route: "",
+    route: "/podcast",
   },
   {
     title: "Notification",
@@ -216,4 +216,63 @@ const languageCommunity = [
   },
 ];
 
-export { Tab, MyLesson, Mentors, languageCommunity, Tab2 };
+const Podcast = [
+  {
+    name: "Awesome Tech Talks",
+    author: "Tech Enthusiast Productions",
+    audio_file: "https://example.com/awesome_tech_talks_episode1.mp3",
+    image:
+      "https://images.pexels.com/photos/6919954/pexels-photo-6919954.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
+  {
+    name: "Awesome Tech Talks",
+    author: "Tech Enthusiast Productions",
+    audio_file: "https://example.com/awesome_tech_talks_episode1.mp3",
+    image:
+      "https://images.pexels.com/photos/6953867/pexels-photo-6953867.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
+  {
+    name: "Awesome Tech Talks",
+    author: "Tech Enthusiast Productions",
+    audio_file: "https://example.com/awesome_tech_talks_episode1.mp3",
+    image:
+      "https://images.pexels.com/photos/6953867/pexels-photo-6953867.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
+  {
+    name: "Awesome Tech Talks",
+    author: "Tech Enthusiast Productions",
+    audio_file: "https://example.com/awesome_tech_talks_episode1.mp3",
+    image:
+      "https://images.pexels.com/photos/6953867/pexels-photo-6953867.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
+  {
+    name: "Awesome Tech Talks",
+    author: "Tech Enthusiast Productions",
+    audio_file: "https://example.com/awesome_tech_talks_episode1.mp3",
+    image:
+      "https://images.pexels.com/photos/6919954/pexels-photo-6919954.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
+  {
+    name: "Awesome Tech Talks",
+    author: "Tech Enthusiast Productions",
+    audio_file: "https://example.com/awesome_tech_talks_episode1.mp3",
+    image:
+      "https://images.pexels.com/photos/6953867/pexels-photo-6953867.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
+  {
+    name: "Awesome Tech Talks",
+    author: "Tech Enthusiast Productions",
+    audio_file: "https://example.com/awesome_tech_talks_episode1.mp3",
+    image:
+      "https://images.pexels.com/photos/6953867/pexels-photo-6953867.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
+  {
+    name: "Awesome Tech Talks",
+    author: "Tech Enthusiast Productions",
+    audio_file: "https://example.com/awesome_tech_talks_episode1.mp3",
+    image:
+      "https://images.pexels.com/photos/6953867/pexels-photo-6953867.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
+];
+
+export { Tab, MyLesson, Mentors, languageCommunity, Tab2, Podcast };
