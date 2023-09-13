@@ -6,8 +6,8 @@ import React, { useState } from "react";
 import { BsFillPlusCircleFill } from "react-icons/bs";
 
 const Sidebar = () => {
-  const [active, setActive] = useState("home");
-  const { setIsOpen, isOpen } = useVerbalContext();
+  // const [active, setActive] = useState("home");
+  const { setIsOpen, isOpen, active, setActive } = useVerbalContext();
   console.log(isOpen);
 
   return (

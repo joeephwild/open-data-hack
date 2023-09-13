@@ -34,7 +34,7 @@ const PodcastSection = () => {
         </div>
 
         <div>
-          <div className="flex flex-wrap gap-10 my-[16px]">
+          <div className="flex flex-wrap overflow-x-hidden gap-10 my-[16px]">
             {Podcast.map((item, i) => (
               <div key={i}>
                 <Image

@@ -24,6 +24,8 @@ contract UserProfile {
 
     constructor() {
         owner = msg.sender;
+        createMentorTable();
+        createStudentTable();
     }
 
     // function to create student

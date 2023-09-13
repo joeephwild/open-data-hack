@@ -8,16 +8,21 @@ interface ContractChildren {
 interface ContractContextTypes {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isOpen: boolean;
+  active: string
+  setActive: React.Dispatch<React.SetStateAction<string>>
 }
 
 const ContractContext = createContext<ContractContextTypes | null>(null);
 
 export const VerbalProvider = ({ children }: ContractChildren) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [active, setActive] = useState("home");
 
   const value = {
     setIsOpen,
     isOpen,
+    active,
+    setActive
   };
 
   return (

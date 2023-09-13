@@ -40,7 +40,7 @@ const Tab2 = [
     title: "Upload Podcasts",
     icon: BsHeadset,
     active: "community",
-    route: "",
+    route: "/",
   },
   {
     title: "Go Live",
@@ -67,7 +67,7 @@ const Tab = [
     title: "Carts",
     icon: HiUserGroup,
     active: "community",
-    route: "",
+    route: "/community",
   },
   {
     title: "Notification",
@@ -171,51 +171,6 @@ const MyLesson = [
   },
 ];
 
-const languageCommunity = [
-  {
-    name: "English",
-    image:
-      "https://images.pexels.com/photos/4307884/pexels-photo-4307884.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    num_people: 1200000000,
-  },
-  {
-    name: "Mandarin Chinese",
-    image:
-      "https://images.pexels.com/photos/4307884/pexels-photo-4307884.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    num_people: 1100000000,
-  },
-  {
-    name: "Spanish",
-    image:
-      "https://images.pexels.com/photos/4307884/pexels-photo-4307884.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    num_people: 460000000,
-  },
-  {
-    name: "Hindi",
-    image:
-      "https://images.pexels.com/photos/4307884/pexels-photo-4307884.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    num_people: 600000000,
-  },
-  {
-    name: "Arabic",
-    image:
-      "https://images.pexels.com/photos/4307884/pexels-photo-4307884.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    num_people: 310000000,
-  },
-  {
-    name: "French",
-    image:
-      "https://images.pexels.com/photos/4307884/pexels-photo-4307884.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    num_people: 280000000,
-  },
-  {
-    name: "Russian",
-    image:
-      "https://images.pexels.com/photos/4307884/pexels-photo-4307884.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    num_people: 260000000,
-  },
-];
-
 const Podcast = [
   {
     name: "Awesome Tech Talks",
@@ -272,6 +227,65 @@ const Podcast = [
     audio_file: "https://example.com/awesome_tech_talks_episode1.mp3",
     image:
       "https://images.pexels.com/photos/6953867/pexels-photo-6953867.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
+];
+
+const languageCommunity = [
+  {
+    name: "English",
+    image:
+      "https://images.pexels.com/photos/4307884/pexels-photo-4307884.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    num_people: 1200000000,
+    coverImage:
+      "https://images.pexels.com/photos/17899637/pexels-photo-17899637/free-photo-of-woman-wearing-red-sari-standing-on-rocks-in-forest.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+  },
+  {
+    name: "Mandarin Chinese",
+    image:
+      "https://images.pexels.com/photos/4307884/pexels-photo-4307884.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    num_people: 1100000000,
+    coverImage:
+      "https://images.pexels.com/photos/17899637/pexels-photo-17899637/free-photo-of-woman-wearing-red-sari-standing-on-rocks-in-forest.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+  },
+  {
+    name: "Spanish",
+    image:
+      "https://images.pexels.com/photos/4307884/pexels-photo-4307884.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    num_people: 460000000,
+    coverImage:
+      "https://images.pexels.com/photos/17899637/pexels-photo-17899637/free-photo-of-woman-wearing-red-sari-standing-on-rocks-in-forest.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+  },
+  {
+    name: "Hindi",
+    image:
+      "https://images.pexels.com/photos/4307884/pexels-photo-4307884.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    num_people: 600000000,
+    coverImage:
+      "https://images.pexels.com/photos/17899637/pexels-photo-17899637/free-photo-of-woman-wearing-red-sari-standing-on-rocks-in-forest.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+  },
+  {
+    name: "Arabic",
+    image:
+      "https://images.pexels.com/photos/4307884/pexels-photo-4307884.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    num_people: 310000000,
+    coverImage:
+      "https://images.pexels.com/photos/17899637/pexels-photo-17899637/free-photo-of-woman-wearing-red-sari-standing-on-rocks-in-forest.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+  },
+  {
+    name: "French",
+    image:
+      "https://images.pexels.com/photos/4307884/pexels-photo-4307884.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    num_people: 280000000,
+    coverImage:
+      "https://images.pexels.com/photos/17899637/pexels-photo-17899637/free-photo-of-woman-wearing-red-sari-standing-on-rocks-in-forest.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+  },
+  {
+    name: "Russian",
+    image:
+      "https://images.pexels.com/photos/4307884/pexels-photo-4307884.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    num_people: 260000000,
+    coverImage:
+      "https://images.pexels.com/photos/17899637/pexels-photo-17899637/free-photo-of-woman-wearing-red-sari-standing-on-rocks-in-forest.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
   },
 ];
 

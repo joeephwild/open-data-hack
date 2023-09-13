@@ -5,3 +5,9 @@ interface Lesson {
     image: string;
   }
   
+  interface Community {
+    name: string;
+    image: string;
+    num_people: number;
+    coverImage: string;
+  }
