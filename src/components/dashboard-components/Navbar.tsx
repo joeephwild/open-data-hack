@@ -1,4 +1,4 @@
-import { logo } from "@/assests/images";
+import { logo, avatar } from "@/assests/images";
 import Image from "next/image";
 import React from "react";
 import { BsSearch } from "react-icons/bs";
@@ -6,7 +6,7 @@ import { BsSearch } from "react-icons/bs";
 const Navbar = () => {
   return (
     <div className="flex items-center sticky border-b-2 w-full justify-between px-[40px] py-[20px]">
-      <div className="flex itesm-center space-x-[40px]">
+      <div className="flex items-center space-x-[40px]">
         <Image
           src={logo}
           alt="logo"
@@ -20,6 +20,15 @@ const Navbar = () => {
             className="bg-transparent text-[#000] border-none outline-none focus:outline-none w-full"
           />
         </div>
+      </div>
+      <div className="ml-auto flex">
+        <Image
+          src={avatar}
+          alt="avatar"
+          width={65}
+          height={65}
+          className="rounded-full"
+        />
       </div>
     </div>
   );
