@@ -27,26 +27,22 @@ const Tab2 = [
   {
     title: "Schedule",
     icon: FaRegCalendarAlt,
-    active: "home",
-    route: "/dashboard",
+    route: "/scheduleACall",
   },
   {
     title: "Create a Community",
     icon: MdGroups2,
-    active: "ai",
-    route: "/ai",
+    route: "/createCommunity",
   },
   {
     title: "Upload Podcasts",
     icon: BsHeadset,
-    active: "community",
-    route: "/",
+    route: "/uploadPodcast",
   },
   {
     title: "Go Live",
     icon: MdVideoLibrary,
-    active: "podcast",
-    route: "",
+    route: "/livesession",
   },
 ];
 
