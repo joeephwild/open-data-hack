@@ -1,7 +1,39 @@
-import React from "react";
+'use client'
+import { auth, db } from "@/firebase";
+import { collection, onSnapshot, orderBy, query, where } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
 import { HiPaperAirplane } from 'react-icons/hi2'
 
+interface ChatMessage {
+  // id: string
+  [key: string]: any
+}
+
 const AiChat = () => {
+  const [chatHistory, setChatHistory] =  useState<ChatMessage[]>([]);
+
+  useEffect(() => {
+    const fetchChat = async () => {
+      const user = auth.currentUser;
+      const q = query(
+        collection(db, "chatrooms"),
+        where("userId", "==", user?.uid),
+        orderBy("created_at")
+      );
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        let chat: ChatMessage[] = [];
+        querySnapshot.forEach((doc) => {
+          chat.push({ ...doc.data(), id: doc.id });
+        });
+        setChatHistory(chat);
+      });
+
+      return () => {
+        unsubscribe();
+      };
+    };
+    fetchChat();
+  }, []);
   return (
     <div className="min-h-screen  flex my-[40px] mx-[111px]">
       <div className="relative border-2 w-full h-[80vh] pl-[39px] pt-[80px] pb-[40px] pr-[40px]">

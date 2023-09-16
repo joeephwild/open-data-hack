@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@dataverse/dataverse-connector": "^1.0.25",
     "@huddle01/react": "^0.0.13",
+    "@tableland/sdk": "^4.5.1",
     "@types/node": "20.5.7",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
@@ -20,6 +22,7 @@
     "framer-motion": "^10.16.2",
     "next": "13.4.19",
     "react": "18.2.0",
+    "react-calendar": "^4.6.0",
     "react-dom": "18.2.0",
     "react-dropzone": "^14.2.3",
     "react-icons": "^4.10.1",
