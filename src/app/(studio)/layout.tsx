@@ -1,4 +1,4 @@
-import { Navbar, Session, Sidebar } from "@/components/dashboard-components";
+import { Navbar, Sidebar } from "@/components/dashboard-components";
 import "../globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -20,7 +20,8 @@ export default function StudioLayout({
       <body className={inter.className}>
         <Navbar />
         <div className="flex items-start gap-5">
-          <div className="w-[83%] h-screen overflow-y-scroll scrollbar-hide">
+          <Sidebar />
+          <div className="w-[100%] h-screen overflow-y-scroll scrollbar-hide">
             {children}
           </div>
         </div>
