@@ -1,9 +1,12 @@
+'use client'
 import { logo, avatar } from "@/assests/images";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { BsSearch } from "react-icons/bs";
 
 const Navbar = () => {
+  const router  = useRouter()
   return (
     <div className="flex items-center sticky border-b-2 w-full justify-between px-[40px] py-[20px]">
       <div className="flex items-center space-x-[40px]">
@@ -21,7 +24,7 @@ const Navbar = () => {
           />
         </div>
       </div>
-      <div className="ml-auto flex">
+      <div onClick={() => router.push("/profile")} className="ml-auto flex">
         <Image
           src={avatar}
           alt="avatar"

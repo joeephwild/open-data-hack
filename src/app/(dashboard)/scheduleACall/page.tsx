@@ -1,8 +1,16 @@
+"use client";
 import FormField from "@/components/FormField";
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import Calendar from "react-calendar";
+
+type ValuePiece = Date | null;
+
+type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 const ScheduleASession = () => {
+  const [value, onChange] = useState<Value>(new Date());
+  console.log(value);
   return (
     <div className="m-[28px] overflow-y-scroll scrollbar-hide">
       <div className="border-2 border-[#fff] p-24px] w-full h-screen p-[40px]">
@@ -16,9 +24,15 @@ const ScheduleASession = () => {
         {/** form section */}
         <form action="" className="my-[30px]">
           <div className="space-y-[24px]">
-            <FormField title="Title" isInput />
-            <FormField title="Title" isInput />
-            <FormField title="Title" isTextArea />
+            <div className="flex items-center gap-[20px]">
+              <Calendar
+                onChange={onChange}
+                value={value}
+                className="border-2 border-[#fff] items-center p-[24px] w-[50%] h-[384px] text-[16px]"
+              />
+              <div className="border-2 border-[#fff] w-[50%] h-[385px] p-[24px]"></div>
+            </div>
+            <FormField title="Mentor" isInput />
           </div>
         </form>
       </div>

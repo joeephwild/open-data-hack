@@ -1,7 +1,9 @@
+
 import { VerbalProvider } from "@/app/context/Index";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import PodcastPlayer from "@/components/PodcastPlayer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <VerbalProvider>
-        
+          {/* <div >
+            <PodcastPlayer />
+          </div> */}
           {children}
         </VerbalProvider>
       </body>
