@@ -1,5 +1,5 @@
 import { image, main, plant } from "@/assests/images";
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 import Image from "next/image";
 import React from "react";
 
@@ -7,12 +7,12 @@ const Hero = () => {
   return (
     <div className=" my-[100px] gap-[190px]  w-full">
       <div className="fixed left-[90px] top-[209px] flex flex-col items-start space-y-[35.47px]">
-        <h2 className="w-[780px] text-8xl text-wrap font-black">
-          Learning and teaching online, made decentralized.
+        <h2 className="w-[780px] text-8xl text-wra font-black">
+          Learning and teaching, made decentralized.
         </h2>
-        <span className="text-xl font-normal">
-          Gain subject certification or earn money while teaching online with
-          GlobalTalk.
+        <span className="w-[780px] text-xl font-normal">
+          Enter the decentralized world in style as a langauge enthusiast, Earn
+          and learn with smooth transaction all made possible with Verbal.
         </span>
         <div className="flex items-center space-x-7">
           <button className="bg-[#f70] px-[56px] py-[16px] rounded-[8px] text-[16px] font-bold">
@@ -46,7 +46,7 @@ const Hero = () => {
         </div>
       </div>
       <>
-      <Image
+        <Image
           src={image}
           alt="main"
           className="w-[312px] h-[234px] fixed top-[447px] right-[607px] object-contain"
