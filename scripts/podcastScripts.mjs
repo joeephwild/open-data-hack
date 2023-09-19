@@ -58,8 +58,8 @@ const getTableName = async () => {
 const _upload = upload();
 _upload
 
-// const _name = getTableName();
-// _name
+const _name = getTableName();
+_name
 
-// const _create = create();
-// _create
+const _create = create();
+_create

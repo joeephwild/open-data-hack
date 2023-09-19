@@ -1,15 +1,19 @@
 "use client";
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState, Dispatch, SetStateAction } from "react";
 
 interface ContractChildren {
   children: React.ReactNode;
 }
 
 interface ContractContextTypes {
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
   isOpen: boolean;
-  active: string
-  setActive: React.Dispatch<React.SetStateAction<string>>
+  active: string;
+  setActive: Dispatch<SetStateAction<string>>;
+  playerOpen: boolean;
+  setPlayerOpen: Dispatch<SetStateAction<boolean>>;
+  selectedPlay: Podcast | Podcast[]
+  setSelectedPlay: Dispatch<SetStateAction<Podcast | Podcast[]>>
 }
 
 const ContractContext = createContext<ContractContextTypes | null>(null);
@@ -17,12 +21,18 @@ const ContractContext = createContext<ContractContextTypes | null>(null);
 export const VerbalProvider = ({ children }: ContractChildren) => {
   const [isOpen, setIsOpen] = useState(false);
   const [active, setActive] = useState("home");
+  const [playerOpen, setPlayerOpen] = useState(false);
+  const [selectedPlay, setSelectedPlay] = useState<Podcast | Podcast[]>([]);
 
   const value = {
     setIsOpen,
     isOpen,
     active,
-    setActive
+    setActive,
+    playerOpen,
+    setPlayerOpen,
+    selectedPlay,
+    setSelectedPlay
   };
 
   return (

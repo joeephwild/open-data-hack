@@ -2,7 +2,7 @@ import React from 'react'
 
 const ProfileDetails = () => {
   return (
-    <div>ProfileDetails</div>
+    <div className='m-[40px]'>ProfileDetails</div>
   )
 }
 

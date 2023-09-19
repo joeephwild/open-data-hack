@@ -1,13 +1,22 @@
 "use client";
 import { useVerbalContext } from "@/app/context/Index";
 import { Tab, Tab2 } from "@/utils";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { Router } from "next/router";
 import React from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
 const UploadModal = () => {
-  const { isOpen, setIsOpen } = useVerbalContext();
+  const { isOpen, setIsOpen, setActive } = useVerbalContext();
+  const route = useRouter();
 
-  // if (!isOpen) return null;
+  const handleORoute = (routeItem: string) => {
+    setIsOpen(false);
+    route.push(`${routeItem}`);
+  };
+
+  if (!isOpen) return null;
   return (
     <div className="flex items-center justify-center">
       <div className="fixed z-[666666] bg-black opacity-50 inset-0"></div>
@@ -26,7 +35,11 @@ const UploadModal = () => {
         <div className="bg-gradient-to-r from-[#008EFF] to-[#0065B5] w-full h-1 my-4" />
         <div className="flex flex-col items-start gap-[24px]">
           {Tab2.map((item, i) => (
-            <div key={i} className="flex flex-col items-center space-y-[20px]">
+            <div
+              onClick={() => handleORoute(item.route)}
+              key={i}
+              className="flex flex-col items-center space-y-[20px] cursor-pointer"
+            >
               <div className="flex items-center space-x-[16px]">
                 <item.icon
                   size={40}

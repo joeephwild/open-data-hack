@@ -2,7 +2,7 @@ import React from "react";
 
 const Intro = ({next}: any) => {
   return (
-    <div className="space-y-[16px] place-items-center mt-[20%]">
+    <div className="space-y-[16px]">
       <h1 className="lg:text-[48px] w-[448p]  md:text-[30px]">
         Welcome to <br /> Verbal Language
       </h1>

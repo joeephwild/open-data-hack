@@ -8,6 +8,9 @@ import books from "./books.svg";
 import task from "./task-fill.svg";
 import exit from "./Exit,Leave,Quit.svg";
 import warning from "./Alert-Triangle.svg";
+import main from "./boy.png";
+import plant from "./plant.png";
+import image from './image-6.png'
 
 export {
   wallet,
@@ -20,4 +23,7 @@ export {
   avatar,
   exit,
   warning,
+  main,
+  plant,
+  image
 };
