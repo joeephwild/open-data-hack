@@ -5,9 +5,9 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <div className=" my-[100px] gap-[190px]  w-full">
+    <div className=" my-[100px] gap-[190px]  w-full overflow-y-scroll">
       <div className="fixed left-[90px] top-[209px] flex flex-col items-start space-y-[35.47px]">
-        <h2 className="w-[780px] text-8xl text-wra font-black">
+        <h2 className="w-[780px] text-6xl text-wra font-black">
           Learning and teaching, made decentralized.
         </h2>
         <span className="w-[780px] text-xl font-normal">
