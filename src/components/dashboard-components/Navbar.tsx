@@ -1,4 +1,5 @@
-'use client'
+"use client";
+import { useVerbalContext } from "@/app/context/Index";
 import { logo, avatar } from "@/assests/images";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -6,7 +7,13 @@ import React from "react";
 import { BsSearch } from "react-icons/bs";
 
 const Navbar = () => {
-  const router  = useRouter()
+  const router = useRouter();
+
+  const { wallet, setWallet } = useVerbalContext();
+
+  if (!wallet) {
+    router.push("/");
+  }
   return (
     <div className="flex items-center sticky border-b-2 w-full justify-between px-[40px] py-[20px]">
       <div className="flex items-center space-x-[40px]">
@@ -24,15 +31,27 @@ const Navbar = () => {
           />
         </div>
       </div>
-      <div onClick={() => router.push("/profile")} className="ml-auto flex">
-        <Image
-          src={avatar}
-          alt="avatar"
-          width={65}
-          height={65}
-          className="rounded-full"
-        />
-      </div>
+
+      {!wallet && (
+        <button
+          //  onClick={connectWalletWithMetamaskProvider}
+          className="bg-[#f70] px-[56px] py-[16px] rounded-[8px] text-[16px] font-bold"
+        >
+          Connect Wallet
+        </button>
+      )}
+
+      {wallet && (
+        <div onClick={() => router.push("/profile")} className="ml-auto flex">
+          <Image
+            src={avatar}
+            alt="avatar"
+            width={65}
+            height={65}
+            className="rounded-full"
+          />
+        </div>
+      )}
     </div>
   );
 };

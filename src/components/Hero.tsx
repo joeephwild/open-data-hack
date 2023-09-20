@@ -1,9 +1,25 @@
+'use client'
 import { image, main, plant } from "@/assests/images";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
+// import { WALLET, DataverseConnector } from "@dataverse/dataverse-connector";
 
 const Hero = () => {
+//   const connectWallet = async () => {
+//     try {
+//       const dataverseConnector = new DataverseConnector();
+//       const pkh = await dataverseConnector.connectWallet({
+//         wallet: WALLET.METAMASK,
+//       });
+//       alert(pkh);
+//     } catch (error) {
+//       console.log("connecting wallet failed", error);
+//     }
+//   };
+
+const route = useRouter()
   return (
     <div className=" my-[100px] gap-[190px]  w-full overflow-y-scroll">
       <div className="fixed left-[90px] top-[209px] flex flex-col items-start space-y-[35.47px]">
@@ -15,7 +31,11 @@ const Hero = () => {
           and learn with smooth transaction all made possible with Verbal.
         </span>
         <div className="flex items-center space-x-7">
-          <button className="bg-[#f70] px-[56px] py-[16px] rounded-[8px] text-[16px] font-bold">
+          <button
+            // onClick={connectWallet}
+            onClick={() => route.push("/dashboard")}
+            className="bg-[#f70] px-[56px] py-[16px] rounded-[8px] text-[16px] font-bold"
+          >
             Connect Wallet
           </button>
           <button className="border-2 border-[#f70] px-[56px] py-[16px] rounded-[8px] text-[16px] font-bold">

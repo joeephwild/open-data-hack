@@ -1,4 +1,4 @@
-import { AiFillHome, AiFillRobot } from "react-icons/ai";
+import { AiFillHome, AiFillRobot, AiTwotoneAudio } from "react-icons/ai";
 import { HiUserGroup } from "react-icons/hi";
 import { BsFillMicFill, BsHeadset } from "react-icons/bs";
 import { IoNotificationsSharp } from "react-icons/io5";
@@ -40,8 +40,8 @@ const Tab2 = [
     route: "/uploadPodcast",
   },
   {
-    title: "Go Live",
-    icon: MdVideoLibrary,
+    title: "Create Audio Spaces",
+    icon: AiTwotoneAudio,
     route: "/livesession",
   },
 ];
