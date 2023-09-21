@@ -9,7 +9,7 @@ import { BsSearch } from "react-icons/bs";
 const MainNav = () => {
   const router = useRouter();
   return (
-    <div className="flex items-center sticky border-b-2 w-full justify-between px-[40px] py-[20px]">
+    <div className="flex items-center sticky border-b-2 w-full justify-between px-[40px] py-[10px]">
       <div className="flex items-center space-x-[40px]">
         <Image
           src={logo}

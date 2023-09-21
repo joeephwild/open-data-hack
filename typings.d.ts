@@ -17,4 +17,5 @@ interface Podcast {
   author: string;
   audio_file: string;
   image: string;
+  podcast_length?: number;
 }
