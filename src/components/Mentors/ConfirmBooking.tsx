@@ -1,7 +1,7 @@
 import React from "react";
 import { BsCalendar4, BsXCircle } from "react-icons/bs";
 import { TbClock2 } from "react-icons/tb";
-import { Select } from "../UI";
+import { Button, Select } from "../UI";
 
 interface prop {
   cancelFormAction?: () => void;
@@ -68,10 +68,22 @@ const ConfirmBooking = ({
       </div>
       <form action="" onSubmit={submitFormAction} className="mt-12">
         <div className="mt-4 w-[50%] mx-auto">
-          <label htmlFor="main-select" className="block">
+          <label htmlFor="main-select" className="block font-bold">
             Select main
           </label>
           <Select category={category} />
+        </div>
+        <div className="mt-4 w-[50%] mx-auto">
+          <label htmlFor="add-question" className="block font-bold">
+            Add your question to this booking
+          </label>
+          <textarea
+            className="bg-white text-[#000] border-none outline-none focus:outline-none w-full rounded-lg"
+            rows={5}
+          />
+        </div>
+        <div className="mt-8 mx-auto w-[50%] flex justify-center">
+          <Button buttonText="Confirm Booking" />
         </div>
       </form>
     </div>
