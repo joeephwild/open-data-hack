@@ -3,17 +3,14 @@ import { useVerbalContext } from "@/app/context/Index";
 import { logo, avatar } from "@/assests/images";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 import { BsSearch } from "react-icons/bs";
 
 const Navbar = () => {
   const router = useRouter();
 
-  const { wallet, setWallet } = useVerbalContext();
+  const { wallet } = useVerbalContext();
 
-  if (!wallet) {
-    router.push("/");
-  }
   return (
     <div className="flex items-center sticky border-b-2 w-full justify-between px-[40px] py-[20px]">
       <div className="flex items-center space-x-[40px]">

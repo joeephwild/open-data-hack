@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { useWeb3 } from "./Web3Context";
+import { useWeb3 } from "./SpaceContext";
 
 // Define the type for the user context.
 type UserContextType = {

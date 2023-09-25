@@ -1,11 +1,5 @@
 // SPDX-License-Identifier: SEE LICENSE IN LICENSE
-pragma solidity ^0.8.18;
-
-import "@openzeppelin/contracts/utils/Counters.sol";
-import "@tableland/evm/contracts/utils/TablelandDeployments.sol";
-import "@tableland/evm/contracts/utils/SQLHelpers.sol";
-import "@openzeppelin/contracts/utils/Strings.sol";
-import "@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol";
+pragma solidity ^0.8.17;
 
 contract AudioSpace {
     struct Space {
@@ -17,11 +11,10 @@ contract AudioSpace {
         address[] particpant;
     }
 
-     Space[] public spaces; // Store spaces in an array
+    Space[] public spaces; // Store spaces in an array
     mapping(address => Space) public mappingToSpace;
     mapping(uint256 => Space) public mappingUintToSpace;
     uint256 public spaceCounter;
-
 
     function createSpace(
         string memory title_,
@@ -51,6 +44,10 @@ contract AudioSpace {
         // Check if the sender is not the owner of the space
         require(msg.sender != space.owner, "You are the owner of this space");
 
-        space.participants.push(msg.sender);
+        space.particpant.push(msg.sender);
+    }
+
+    function retieveSpaces() external view returns (Space[] memory) {
+        return spaces;
     }
 }

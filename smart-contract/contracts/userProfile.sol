@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: SEE LICENSE IN LICENSE
-pragma solidity ^0.8.18;
+pragma solidity ^0.8.17;
 
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@tableland/evm/contracts/utils/TablelandDeployments.sol";
@@ -7,7 +7,7 @@ import "@tableland/evm/contracts/utils/SQLHelpers.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol";
 
-contract UserProfile {
+contract userProfile {
     using Counters for Counters.Counter;
 
     Counters.Counter private _studentID;

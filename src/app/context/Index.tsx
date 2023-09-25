@@ -2,6 +2,7 @@
 import {
   DataverseConnector,
   SYSTEM_CALL,
+  WALLET,
 } from "@dataverse/dataverse-connector";
 import { useRouter } from "next/navigation";
 import {
@@ -29,8 +30,13 @@ interface ContractContextTypes {
   setSelectedPlay: Dispatch<SetStateAction<Podcast | Podcast[]>>;
   wallet: string;
   setWallet: Dispatch<SetStateAction<string>>;
-  checkuserCapability(): Promise<boolean | undefined>
-  accessCapablility(): Promise<string | undefined>
+  checkuserCapability(): Promise<boolean | undefined>;
+  accessCapablility(): Promise<string | undefined>;
+  dataverseConnector: DataverseConnector | undefined;
+  setDataverseConnector: Dispatch<
+    SetStateAction<DataverseConnector | undefined>
+  >;
+  connectWalletWithMetamaskProvider: () => Promise<void>;
 }
 
 const ContractContext = createContext<ContractContextTypes | null>(null);
@@ -42,12 +48,28 @@ export const VerbalProvider = ({ children }: ContractChildren) => {
   const [selectedPlay, setSelectedPlay] = useState<Podcast | Podcast[]>([]);
   const [wallet, setWallet] = useState("");
   console.log(wallet);
-  const dataverseConnector = new DataverseConnector();
+  const [dataverseConnector, setDataverseConnector] =
+    useState<DataverseConnector>();
+
+  useEffect(() => {
+    setDataverseConnector(new DataverseConnector());
+  }, []);
+
+  // ...
+  useEffect(() => {
+    const getLoggedinUser = async () => {
+      if (dataverseConnector) {
+        const res = await dataverseConnector?.getCurrentWallet();
+        // ...
+      }
+    };
+    getLoggedinUser();
+  }, [wallet, dataverseConnector]); // add dataverseConnector as a dependency
   const router = useRouter();
 
   async function accessCapablility() {
     try {
-      const res = await dataverseConnector.runOS({
+      const res = await dataverseConnector?.runOS({
         method: SYSTEM_CALL.createCapability,
         params: {
           appId: "949a2e74-1299-4032-bba8-4eb0d6c831e7",
@@ -63,7 +85,7 @@ export const VerbalProvider = ({ children }: ContractChildren) => {
 
   async function checkuserCapability() {
     try {
-      const res = await dataverseConnector.runOS({
+      const res = await dataverseConnector?.runOS({
         method: SYSTEM_CALL.checkCapability,
         params: {
           appId: "949a2e74-1299-4032-bba8-4eb0d6c831e7",
@@ -76,19 +98,45 @@ export const VerbalProvider = ({ children }: ContractChildren) => {
     }
   }
 
+  const connectWalletWithMetamaskProvider = async () => {
+    if (!dataverseConnector) return alert("problem");
+
+    const provider = (window as any).ethereum;
+    if (!provider) {
+      console.error("Ethereum provider is not available");
+      return;
+    }
+    const res = await dataverseConnector.connectWallet({
+      wallet: WALLET.METAMASK,
+      provider,
+    });
+
+    setWallet(res.address)
+
+    const checkAuth = await checkuserCapability();
+    if (!checkAuth) {
+      const capability = await accessCapablility();
+      console.log(capability);
+    }
+
+    if (wallet && checkAuth) {
+      router.push("/dashboard");
+    }
+  };
+
   useEffect(() => {
     const getLoggedinUser = async () => {
       const res = await dataverseConnector?.getCurrentWallet();
       console.log(res?.address);
       setWallet(res?.address || "");
-      const checkAuth = await checkuserCapability();
-      if (!checkAuth) {
-        accessCapablility();
-      } else if (res?.address) {
-        router.push("/dashboard");
-      }
     };
     getLoggedinUser();
+  }, [wallet]);
+
+  useEffect(() => {
+    if (wallet) {
+      router.push("/dashboard");
+    }
   }, [wallet]);
 
   const value = {
@@ -103,7 +151,10 @@ export const VerbalProvider = ({ children }: ContractChildren) => {
     wallet,
     setWallet,
     checkuserCapability,
-    accessCapablility
+    accessCapablility,
+    dataverseConnector,
+    setDataverseConnector,
+    connectWalletWithMetamaskProvider,
   };
 
   return (

@@ -8,7 +8,6 @@ import { BsFillPlusCircleFill } from "react-icons/bs";
 const Sidebar = () => {
   // const [active, setActive] = useState("home");
   const { setIsOpen, isOpen, active, setActive } = useVerbalContext();
-  console.log(isOpen);
 
   return (
     <div className="w-[7%] h-screen border-r-2 p-5">

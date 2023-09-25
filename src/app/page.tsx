@@ -10,6 +10,8 @@ export default function Home() {
       <MainNav />
 
       {/** main section */}
+      {/* <PodcastPlayer podcast={podcastDemo} />
+      <ConfirmBooking date="Sun, August 13" time="8:30pm" /> */}
       <Hero />
     </div>
   );
